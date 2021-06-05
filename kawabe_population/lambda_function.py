@@ -2,6 +2,7 @@ import sqlite3
 from numpy import unique
 import pandas as pd
 import json
+from datetime import datetime
 
 
 def lambda_handler(event, context):
@@ -110,7 +111,7 @@ def lambda_handler(event, context):
 
         # 年齢別グラフデータ
         df = pd.read_sql('select * from 年齢別人口', conn, index_col='index')
-        df = df.sort_values('確認日')
+        df = df.sort_values('確認日', ascending=False)
         df = df.reset_index()
 
         df['確認日'] = pd.to_datetime(df['確認日'])
@@ -121,8 +122,13 @@ def lambda_handler(event, context):
         max_population = int(df['合計'].max())
         age_datas = []
         age_options = []
-        for m in list(unique(df['確認日'].dt.strftime('%Y/%m').values)):
+        for m in list(sorted(unique(df['確認日'].dt.strftime('%Y/%m').values), reverse=True)):
             year, month = m.split('/')
+            print(year, month)
+            print(datetime.now().year)
+            if int(year) != datetime.now().year and month != '01':
+                print('continue')
+                continue
             age_data = {}
             age_option = {}
 
