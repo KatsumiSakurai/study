@@ -1,0 +1,24 @@
+@startuml ガントチャートサンプル
+printscale daily
+saturday are closed
+sunday are closed
+2021/06/07 is closed
+
+Project start 2021-06-07
+today is 2021-06-09 and is colored in #AAF
+'マイルストン
+-- マイルストン --
+[受領] happens 2021-06-09
+'WBS
+-- WBS --
+[1.タスク１] as [1] on {櫻井:50%} lasts 3 days
+then [2.タスク２] as [2] lasts 5 days
+then [3.タスク３] as [3] lasts 3 days
+[1] is 10% completed
+[2] is 0% completed
+[3] is 0% completed
+-- リソース --
+@enduml
+
+@enduml
+
