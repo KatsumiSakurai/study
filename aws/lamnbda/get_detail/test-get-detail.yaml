@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: An AWS Serverless Specification template describing your function.
 Resources:
-  testgetdata:
+  testgetdetail:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: lambda_function.lambda_handler
@@ -17,12 +17,7 @@ Resources:
         Api1:
           Type: Api
           Properties:
-            Path: /test
-            Method: GET
-        Api2:
-          Type: Api
-          Properties:
-            Path: /
+            Path: /detail
             Method: GET
       VpcConfig:
         SecurityGroupIds:
