@@ -1,28 +1,26 @@
+from os import times
 from re import sub
 import pulp
-import sys
-
-from pulp.pulp import lpSum
 
 subjects = {
     '国語': 30,
-    '算数': 30,
+    '算数': 50,
     '理科': 20,
     '社会': 20,
-    '英語': 20
+    '英語': 20,
 }
 
-tests = {
-    '国語': [10, 20, 30],
-    '算数': [10, 20, 30],
-    '理科': [10, 20],
-    '社会': [10, 20],
-    '英語': [10, 20],
+teachers = {
+    '国語': 1,
+    '算数': 2,
+    '理科': 1,
+    '社会': 1,
+    '英語': 1,
 }
 
-rooms = ['a', 'b', 'c']
+rooms = ['a', 'b', 'c', 'd', 'e']
 
-days = range(30)
+days = range(50)
 timeslot = range(4)
 
 
@@ -44,18 +42,18 @@ def main():
 
     problem = pulp.LpProblem("時間割", pulp.LpMinimize)
 
-    problem += lpSum([v[s][x][y][r]*x for s in subjects.keys() for x in days for y in timeslot for r in rooms])
+    problem += pulp.lpSum([v[s][x][y][r]*x for s in subjects.keys() for x in days for y in timeslot for r in rooms])
 
     # 各教科は必要コマ数実施
     for s in subjects.keys():
         for r in rooms:
-            problem += lpSum([v[s][x][y][r] for x in days for y in timeslot]) == subjects[s]
+            problem += pulp.lpSum([v[s][x][y][r] for x in days for y in timeslot]) == subjects[s]
 
-    # 同一教科は同一コマに一つのみ
+    # 同一教科は同一コマに先生の数未満
     for s in subjects.keys():
         for x in days:
             for y in timeslot:
-                problem += pulp.lpSum([v[s][x][y][r] for r in rooms]) <= 1
+                problem += pulp.lpSum([v[s][x][y][r] for r in rooms]) <= teachers[s]
 	# 同一コマ+同一クラスは1教科のみ
     for x in days:
         for y in timeslot:
