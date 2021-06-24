@@ -3,8 +3,8 @@ from sqlalchemy import create_engine
 
 connection_config = {
     'user': 'postgres',
-    'password': 'refrain0',
-    'host': 'test-database-1.cluster-c8ml75azbqsk.ap-northeast-1.rds.amazonaws.com',
+    'password': 'TearBirds0',
+    'host': 'sakurai-database-1.cneg46zalaof.ap-northeast-1.rds.amazonaws.com',
     'port': 5432,
     'database': 'aichi'
 }

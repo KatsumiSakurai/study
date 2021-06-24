@@ -12,7 +12,7 @@ Resources:
       MemorySize: 128
       Timeout: 3
       Role: >-
-        arn:aws:iam::xxxxxxxxxxxx:role/service-role/test_regist_data-role-cotewp0d
+        arn:aws:iam::391518890631:role/service-role/sakurai-regist-data-role-wbkyqyth
       Events:
         Api1:
           Type: Api
@@ -26,10 +26,11 @@ Resources:
             Method: GET
       VpcConfig:
         SecurityGroupIds:
-          - sg-c4b48ab0
+          - sg-9816e4dd
         SubnetIds:
-          - subnet-0f340e54
-          - subnet-4ace1d61
+          - subnet-0c269e44
+          - subnet-3b739961
+          - subnet-96c84abd
       Layers:
         - >-
           arn:aws:lambda:ap-northeast-1:770693421928:layer:Klayers-python38-aws-psycopg2:1
