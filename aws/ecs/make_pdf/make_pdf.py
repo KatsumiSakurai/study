@@ -8,6 +8,7 @@ import boto3
 import os
 import psycopg2
 from decimal import Decimal
+import time
 
 s3 = boto3.resource('s3')
 
@@ -63,9 +64,10 @@ def lambda_handler(event, context):
         <title>test</title>
         </head>
         <body>
+        <h1>{}地域の市区町村別人口一覧</h1>
         {}
         </body>
-        '''.format(table)
+        '''.format(name, table)
     pdfkit.from_string(html, lpath)
 
     bucket = s3.Bucket(BUCKET_NAME)
@@ -74,6 +76,8 @@ def lambda_handler(event, context):
         bucket.upload_file(lpath, path, ExtraArgs={"ContentType": "application/pdf", 'ACL':'public-read'})
     except Exception as e:
         print(e)
+        
+    time.sleep(30)
         
     return {
         'statusCode': 200,
