@@ -61,13 +61,13 @@ def lambda_handler(event, context):
         <html lang="ja">
         <head>
         <meta charset="utf-8">
-        <title>test</title>
+        <title>{}人口</title>
         </head>
         <body>
         <h1>{}地域の市区町村別人口一覧</h1>
         {}
         </body>
-        '''.format(name, table)
+        '''.format(name, name, table)
     pdfkit.from_string(html, lpath)
 
     bucket = s3.Bucket(BUCKET_NAME)
