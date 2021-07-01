@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>eratosthenes</title>
+<script>
+    function getPrimes(n) {
+        let primes = []
+        for (let i = 2; i < n; i++) {
+            if (primes.length == 0) {
+                primes.push(i);
+                continue
+            }
+            isPrime = true;
+            for (let p of primes) {
+                if (i % p == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                primes.push(i);
+            }
+        }
+
+        let primes_str = "";
+        for (let p of primes) {
+            primes_str += p + " ";
+        }
+        return primes_str;
+    }
+    window.onload = function() {
+        document.getElementById('result').textContent = "ここに100までの素数を表示してください";
+        const N = 100;
+        let primes = getPrimes(N);
+        console.log(primes)
+        document.getElementById('result').textContent = N + "までの素数は" + primes + "です";
+    }
+</script>
+</head>
+<H1>素数</H1>
+<div id="result"></div>
+</html>
