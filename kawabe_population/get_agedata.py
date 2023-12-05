@@ -162,7 +162,7 @@ def get_pdf_data(year, month):
 def main():
     with sqlite3.connect('kawabe.sqlite3') as conn:
         # 最初のデータから取得する場合
-        start = datetime(2017, 4, 1)
+        start = datetime(2015, 4, 1)
         end = datetime.now()
         dt = start
         while dt <= end:

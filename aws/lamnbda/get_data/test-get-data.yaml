@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  testgetdata:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: >-
+        arn:aws:iam::391518890631:role/service-role/sakurai-regist-data-role-wbkyqyth
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /test
+            Method: GET
+        Api2:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-9816e4dd
+        SubnetIds:
+          - subnet-0c269e44
+          - subnet-3b739961
+          - subnet-96c84abd
+      Layers:
+        - >-
+          arn:aws:lambda:ap-northeast-1:770693421928:layer:Klayers-python38-aws-psycopg2:1

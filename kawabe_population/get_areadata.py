@@ -86,7 +86,6 @@ def adjust_data(results):
     return pd.DataFrame(datas, columns=['地区', '日本人男性', '日本人女性', '日本人', '日本人世帯数', '外国人男性', '外国人女性', '外国人', '外国人世帯数'])
 
 def get_pdf_data(year, month):
-    print(year, month)
     urlbase = 'https://www.kawabe-gifu.jp/wp-content/uploads'
     if year == 2015:
         url = '{}/2013/03/（掲示用）最新の地区別{}.pdf'.format(urlbase, 32 + month - 4)
@@ -135,9 +134,10 @@ def get_pdf_data(year, month):
 def main():
     with sqlite3.connect('kawabe.sqlite3') as conn:
         # 最初のデータから取得する場合
-        # start = datetime(2015, 4, 1)
-        start = datetime.now()
-        end = datetime.now()
+        start = datetime(2015, 4, 1)
+        end = datetime(2015, 4, 1)
+        # start = datetime.now()
+        # end = datetime.now()
         dt = start
         while dt <= end:
             year = dt.year
@@ -145,7 +145,9 @@ def main():
 
             print('========{}/{}========'.format(year, month))
             df = get_pdf_data(year, month)
-            df.to_sql('地区別人口', conn, if_exists='append')
+            # df.to_sql('地区別人口', conn, if_exists='append')
+            df.to_csv('地区別人口.csv')
+            print(df)
 
             dt += relativedelta(months=1)
 

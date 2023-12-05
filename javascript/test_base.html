@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>eratosthenes</title>
+<script>
+    function getPrimes(n) {
+        let primes_str = "この関数を変更してnまでの素数を返してください"
+        return primes_str;
+    }
+    window.onload = function() {
+        document.getElementById('result').textContent = "ここに100までの素数を表示してください";
+        const N = 100;
+        let primes = getPrimes(N);
+        console.log(primes)
+        document.getElementById('result').textContent = N + "までの素数は" + primes + "です";
+    }
+</script>
+</head>
+<H1>素数</H1>
+<div id="result"></div>
+</html>
