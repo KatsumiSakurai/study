@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.pythonPath": "/Users/sakuraikatsumi/miniforge3/bin/python3.9"
+	}
+}
